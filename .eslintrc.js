@@ -17,5 +17,14 @@ module.exports = {
 		'@typescript-eslint/indent': ['error', 'tab'],
 		'no-tabs': 'off',
 		'max-len': 'off',
+		'object-curly-newline': 'off',
+		'no-dupe-class-members': 'off',
+		'@typescript-eslint/no-dupe-class-members': 'warn',
+		'@typescript-eslint/lines-between-class-members': [
+			'error',
+			{
+				exceptAfterOverload: true,
+			},
+		],
 	},
 };
