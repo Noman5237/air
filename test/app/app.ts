@@ -1,22 +1,22 @@
 import 'module-alias/register';
 import 'dotenv/config';
-import air from '@air/base';
-import ConsoleLogger from '../utils/logging';
+import { Application } from '@air/base';
 
-const port = process.env.DEV_PORT || 3000;
+import ConsoleLogger from '../utils/logging';
+import apiRoutes from './routes';
+
+const port = Number(process.env.DEV_PORT) || 3000;
 const logger = ConsoleLogger(__filename);
 
-const app = air.createApplication((req?, res?) => {
-	logger.info(`${req.method as string} ${req.url as string} ${req.httpVersion}`);
-	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write('<h1>Hello World</h1>');
-	res.end();
+const app = new Application();
+
+app.use((req, _, next) => {
+	logger.info(`${req.method} ${req.url}`);
+	next();
 });
 
-app
-	.listen(port, () => {
-		logger.info(`App listening on port ${port}`);
-	})
-	.on('error', (err) => {
-		logger.error(err);
-	});
+app.use(apiRoutes);
+
+app.listen(port, () => {
+	logger.info(`App listening on port ${port}`);
+});
