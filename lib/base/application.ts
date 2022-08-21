@@ -29,9 +29,8 @@ class Application {
 
 	listen(port: number, callback: () => void) {
 		this.use((_, res) => {
-			// if response is not sent, send default response
 			if (!res.sent) {
-				res.end();
+				res.status(404).send('Resource not found');
 			}
 		});
 		this.server.listen(port, callback);

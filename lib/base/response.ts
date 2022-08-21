@@ -14,9 +14,14 @@ class Response {
 	}
 
 	send(body: string) {
-		this.serverResponse.writeHead(200, { 'Content-Type': 'text/plain' });
+		this.serverResponse.setHeader('Content-Type', 'text/plain');
 		this.serverResponse.write(body);
 		this.serverResponse.end();
+	}
+
+	status(status: number) {
+		this.serverResponse.statusCode = status;
+		return this;
 	}
 
 	get sent() {
