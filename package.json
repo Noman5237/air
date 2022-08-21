@@ -1,7 +1,7 @@
 {
-	"name": "typescript-node-web-template",
+	"name": "air",
 	"version": "1.0.0",
-	"description": "",
+	"description": "ExpressJS clone",
 	"main": "./src/app/app.ts",
 	"scripts": {
 		"start": "ts-node ./src/app/app.ts",
