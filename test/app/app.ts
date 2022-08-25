@@ -1,6 +1,6 @@
 import 'module-alias/register';
 import 'dotenv/config';
-import { Application } from '@air/base';
+import { Application, Middlewares } from '@air/base';
 
 import ConsoleLogger from '../utils/logging';
 import apiRoutes from './routes';
@@ -16,9 +16,7 @@ app.use((req, _, next) => {
 });
 
 app.use(apiRoutes);
-app.static('/', './test/public/');
-
-app.static('/', './public');
+app.use(Middlewares.serveStatic('/', './test/public'));
 
 app.listen(port, () => {
 	logger.info(`App listening on port ${port}`);

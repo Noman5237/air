@@ -1,18 +1,9 @@
 import http from 'http';
-import fs from 'fs';
-import path from 'path';
 
 import Request from './request';
 import Response from './response';
 import Middleware from './middleware';
 import Handler from './interfaces/handler';
-
-const MIME_TYPES = {
-	'.html': 'text/html',
-	'.js': 'text/javascript',
-	'.css': 'text/css',
-	'.txt': 'text/plain',
-};
 
 class Application {
 	private server: http.Server;
@@ -34,26 +25,6 @@ class Application {
 		} else {
 			this.middleware = new Middleware(middleware);
 		}
-	}
-
-	static(URL: string, dir: string) {
-		this.use((req, res, next) => {
-			const resourcePath = req.url.pathname as string;
-			if (!resourcePath?.startsWith(URL)) {
-				next();
-			}
-
-			const fileName = path.join(dir, resourcePath);
-
-			try {
-				const data = fs.readFileSync(fileName).toString();
-				const ext = fileName.substring(fileName.lastIndexOf('.')) as keyof typeof MIME_TYPES;
-				res.setHeader('Content-Type', MIME_TYPES[ext] || 'text/plain');
-				res.send(data);
-			} catch (error) {
-				next();
-			}
-		});
 	}
 
 	listen(port: number, callback: () => void) {
