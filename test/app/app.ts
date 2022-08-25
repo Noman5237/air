@@ -16,6 +16,7 @@ app.use((req, _, next) => {
 });
 
 app.use(apiRoutes);
+app.static('/', './test/public/');
 
 app.listen(port, () => {
 	logger.info(`App listening on port ${port}`);

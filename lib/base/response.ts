@@ -13,8 +13,11 @@ class Response {
 		this.end = this.serverResponse.end.bind(this);
 	}
 
+	setHeader(name: string, value: string) {
+		this.serverResponse.setHeader(name, value);
+	}
+
 	send(body: string) {
-		this.serverResponse.setHeader('Content-Type', 'text/plain');
 		this.serverResponse.write(body);
 		this.serverResponse.end();
 	}
