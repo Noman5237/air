@@ -27,6 +27,12 @@ class Application {
 		}
 	}
 
+	static(path: string, dir: string) {
+		this.use((req, res) => {
+			//
+		});
+	}
+
 	listen(port: number, callback: () => void) {
 		this.use((_, res) => {
 			if (!res.sent) {

@@ -19,6 +19,8 @@ class Response {
 		this.serverResponse.end();
 	}
 
+	sendFile(path: string, dir: string) {}
+
 	status(status: number) {
 		this.serverResponse.statusCode = status;
 		return this;
