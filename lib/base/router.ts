@@ -10,7 +10,7 @@ class Router extends Middleware {
 
 	route(method: string, path: string, middleware: Middleware | Handler) {
 		this.use((req, res, next) => {
-			if (req.method === method && new RegExp(`^${path}$`).test(req.url)) {
+			if (req.method === method && new RegExp(`^${path}$`).test(req.url.pathname as string)) {
 				if (middleware instanceof Middleware) {
 					middleware.use(next);
 					middleware.handle(req, res);

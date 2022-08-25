@@ -36,13 +36,14 @@ class Application {
 		}
 	}
 
-	static(url: string, dir: string) {
+	static(URL: string, dir: string) {
 		this.use((req, res, next) => {
-			if (!req.url.startsWith(url)) {
+			const resourcePath = req.url.pathname as string;
+			if (!resourcePath?.startsWith(URL)) {
 				next();
 			}
 
-			const fileName = path.join(dir, req.url);
+			const fileName = path.join(dir, resourcePath);
 
 			try {
 				const data = fs.readFileSync(fileName).toString();

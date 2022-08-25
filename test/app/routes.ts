@@ -2,12 +2,9 @@ import { Router } from '@air/base';
 
 const apiRoutes = new Router();
 
-apiRoutes.route('GET', '/', (_, res) => {
-	res.send('Root!');
-});
-
-apiRoutes.route('GET', '/hello', (_, res) => {
-	res.send('Hello!');
+apiRoutes.route('POST', '/index.html', (req, res) => {
+	console.table(req);
+	res.send('Data recorded');
 });
 
 export default apiRoutes;
