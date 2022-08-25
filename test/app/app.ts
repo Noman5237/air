@@ -15,8 +15,10 @@ app.use((req, _, next) => {
 	next();
 });
 
+app.use(Middlewares.bodyParser);
+
 app.use(apiRoutes);
-app.use(Middlewares.serveStatic('/', './test/public'));
+app.use(Middlewares.serveStaticContent('/', './test/public'));
 
 app.listen(port, () => {
 	logger.info(`App listening on port ${port}`);

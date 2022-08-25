@@ -19,6 +19,7 @@ module.exports = {
 		'max-len': 'off',
 		'object-curly-newline': 'off',
 		'no-dupe-class-members': 'off',
+		'implicit-arrow-linebreak': 'off',
 		'@typescript-eslint/no-dupe-class-members': 'warn',
 		'@typescript-eslint/lines-between-class-members': [
 			'error',

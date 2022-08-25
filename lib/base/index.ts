@@ -4,11 +4,14 @@ import Response from './response';
 import Middleware from './middleware';
 import Router from './router';
 
-import serveStaticContent from './middlewares/serveStatic';
 import Handler from './interfaces/handler';
 
+import serveStaticContent from './middlewares/serveStatic';
+import bodyParser from './middlewares/bodyParser';
+
 const Middlewares = {
-	serveStatic: serveStaticContent,
+	serveStaticContent,
+	bodyParser,
 };
 
 export { Application, Request, Response, Middleware, Router, Handler, Middlewares };

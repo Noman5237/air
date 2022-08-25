@@ -27,7 +27,13 @@ const MIME_TYPES = {
 	'.tar': 'application/x-tar',
 };
 
-const serveStaticContent = (URL: string, dir: string) => {
+const serveStaticContent = (
+	URL: string,
+	dir: string,
+	options: { index: string } = {
+		index: 'index.html',
+	},
+) => {
 	const middleware = (req: Request, res: Response, next: () => void) => {
 		let resourcePath = req.url.pathname as string;
 		if (!resourcePath?.startsWith(URL)) {
@@ -35,7 +41,7 @@ const serveStaticContent = (URL: string, dir: string) => {
 		}
 
 		if (resourcePath === URL) {
-			resourcePath = '/index.html';
+			resourcePath += options.index;
 		}
 
 		const fileName = path.join(dir, resourcePath);
