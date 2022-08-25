@@ -11,11 +11,12 @@ const logger = ConsoleLogger(__filename);
 const app = new Application();
 
 app.use((req, _, next) => {
-	logger.info(`${req.method} ${req.url}`);
+	logger.info(`${req.method} ${req.url.pathname!} ${JSON.stringify(req.url.query)}`);
 	next();
 });
 
 app.use(apiRoutes);
+app.static('/', './test/public/');
 
 app.static('/', './public');
 
