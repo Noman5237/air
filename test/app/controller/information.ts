@@ -11,7 +11,6 @@ const information = (req: Request, res: Response) => {
 		method: req.method,
 		path: req.url.pathname,
 		query: JSON.stringify(req.url.search),
-		// queries: req.body || '',
 		queries: JSON.stringify(req.url.query),
 	};
 	const html = substituteTemplate(template, data);

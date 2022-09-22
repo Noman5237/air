@@ -11,7 +11,7 @@ const formParser = (body: string): Record<string, unknown> =>
 
 const textParser = (body: string): string => body;
 
-const PARSERS = {
+const PARSERS: Record<string, (body: string) => Record<string, unknown> | string> = {
 	'application/json': jsonParser,
 	'application/x-www-form-urlencoded': formParser,
 	'text/plain': textParser,
@@ -25,14 +25,12 @@ const bodyParser = (req: Request, res: Response, next: () => void) => {
 	req.on('end', () => {
 		try {
 			const contentType = req.headers['content-type'] as keyof typeof PARSERS;
-			console.log(contentType);
 			const parser = PARSERS[contentType];
 			if (parser) {
-				req.body = parser(body);
+				req.body = parser(body) as Record<string, unknown>;
 			}
 		} catch (error) {
-			console.log('Unsupported content-type');
-			console.log(error);
+			throw new Error('Unsupported content-type');
 		}
 		next();
 	});

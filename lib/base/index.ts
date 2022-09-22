@@ -6,12 +6,4 @@ import Router from './router';
 
 import Handler from './interfaces/handler';
 
-import serveStaticContent from './middlewares/serveStatic';
-import bodyParser from './middlewares/bodyParser';
-
-const Middlewares = {
-	serveStaticContent,
-	bodyParser,
-};
-
-export { Application, Request, Response, Middleware, Router, Handler, Middlewares };
+export { Application, Request, Response, Middleware, Router, Handler };

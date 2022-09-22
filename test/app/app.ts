@@ -1,6 +1,7 @@
 import 'module-alias/register';
 import 'dotenv/config';
-import { Application, Middlewares } from '@air/base';
+import { Application } from '@air/base';
+import { bodyParser, serveStaticContent } from '@air/base/middlewares';
 
 import ConsoleLogger from '../utils/logging';
 import apiRoutes from './routes';
@@ -15,10 +16,10 @@ app.use((req, _, next) => {
 	next();
 });
 
-app.use(Middlewares.bodyParser);
+app.use(bodyParser);
 
 app.use(apiRoutes);
-app.use(Middlewares.serveStaticContent('/', './test/public'));
+app.use(serveStaticContent('/', './test/public'));
 
 app.listen(port, () => {
 	logger.info(`App listening on port ${port}`);

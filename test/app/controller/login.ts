@@ -1,7 +1,11 @@
 import { Request, Response } from '@air/base';
 
+import ConsoleLogger from '../../utils/logging';
+
+const logger = ConsoleLogger(__filename);
+
 const login = (req: Request, res: Response) => {
-	console.table(req.body);
+	logger.verbose(JSON.stringify(req.body));
 	res.send('Data recorded');
 };
 

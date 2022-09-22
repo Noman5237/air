@@ -1,5 +1,7 @@
 import { ServerResponse } from 'http';
 
+// TODO: Can we implement prototype based inheritance?
+
 class Response {
 	private serverResponse: ServerResponse;
 	end: {
